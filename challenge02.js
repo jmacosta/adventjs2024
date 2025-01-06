@@ -1,8 +1,18 @@
 function createFrame(names) {
-  names.sort((a, b) => a - b);
-  let result = '*'.repeat(names[names.length].length + 2) + '\n';
-  names.forEach(element => (result += `* ${element} *${'\n'}`));
-  result += '*'.repeat(names.length + 2);
+  let size = 0;
+  names.forEach(element => {
+    if (element.length > size) {
+      size = element.length;
+    }
+  });
+  let result = '*'.repeat(size + 4) + '\n';
+  names.forEach(
+    element =>
+      (result += `* ${element}${' '.repeat(size - element.length)} *${'\n'}`)
+  );
+  result += '*'.repeat(size + 4);
   // Code here
   return result;
 }
+
+console.log(createFrame(['midu', 'madeval', 'educalvolpz']));
